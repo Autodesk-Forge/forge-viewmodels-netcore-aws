@@ -64,7 +64,6 @@ namespace forgeSample.Controllers
 
         public static async Task<string> GetForgeKeysSSM(string SSMkey)
         {
-            SSMkey = Environment.GetEnvironmentVariable(SSMkey);
             try
             {
                 AWSCredentials awsCredentials = new InstanceProfileAWSCredentials();
@@ -89,7 +88,8 @@ namespace forgeSample.Controllers
                 return Environment.GetEnvironmentVariable(settingKey);
             }
             else if (environment == "Production") {
-               return await GetForgeKeysSSM(Environment.GetEnvironmentVariable(settingKey));
+                string SSMkey = Environment.GetEnvironmentVariable(settingKey);
+                return await GetForgeKeysSSM(SSMkey);
             }
             return string.Empty;
         }
