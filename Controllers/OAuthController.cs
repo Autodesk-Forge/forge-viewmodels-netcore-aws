@@ -1,11 +1,11 @@
 ﻿using Autodesk.Forge;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Threading.Tasks;
 using Amazon.SimpleSystemsManagement;
 using Amazon.SimpleSystemsManagement.Model;
 using Amazon.Runtime;
-using Amazon.Runtime.CredentialManagement;
 
 namespace forgeSample.Controllers
 {
@@ -56,8 +56,8 @@ namespace forgeSample.Controllers
             TwoLeggedApi oauth = new TwoLeggedApi();
             string grantType = "client_credentials";
             dynamic bearer = await oauth.AuthenticateAsync(
-                await GetForgeKeysSSM("FORGE_CLIENT_ID"),
-                await GetForgeKeysSSM("FORGE_CLIENT_SECRET"),
+                await GetAppSetting("FORGE_CLIENT_ID"),
+                await GetAppSetting("FORGE_CLIENT_SECRET"),
                 grantType,
                 scopes);
             return bearer;
@@ -65,29 +65,34 @@ namespace forgeSample.Controllers
 
         public static async Task<string> GetForgeKeysSSM(string SSMkey)
         {
-            var chain = new CredentialProfileStoreChain();
-            SSMkey = GetAppSetting(SSMkey);
-            AWSCredentials awsCredentials;
-            if (chain.TryGetAWSCredentials("default", out awsCredentials))
+            SSMkey = Environment.GetEnvironmentVariable(SSMkey);
+            try
             {
+                AWSCredentials awsCredentials = new InstanceProfileAWSCredentials();
                 GetParameterRequest parameterRequest = new GetParameterRequest() { Name = SSMkey };
-                AmazonSimpleSystemsManagementClient client = new AmazonSimpleSystemsManagementClient(awsCredentials, Amazon.RegionEndpoint.GetBySystemName(GetAppSetting("AWS_REGION")));
+                AmazonSimpleSystemsManagementClient client = new AmazonSimpleSystemsManagementClient(awsCredentials, Amazon.RegionEndpoint.GetBySystemName( Environment.GetEnvironmentVariable("AWS_REGION")));
                 GetParameterResponse response = await client.GetParameterAsync(parameterRequest);
                 return response.Parameter.Value;
             }
-            else
+            catch (Exception e)
             {
-                throw new Exception("Cannot obtain Amazon SSM value for " + SSMkey);
+                throw new Exception("Cannot obtain Amazon SSM value for " + SSMkey, e);
             }
         }
 
-
         /// <summary>
-        /// Reads appsettings from web.config
+        /// Reads appsettings from web.config or AWS SSM Parameter Store
         /// </summary>
-        public static string GetAppSetting(string settingKey)
+        public static async Task<string> GetAppSetting(string settingKey)
         {
-            return Environment.GetEnvironmentVariable(settingKey);
+            string environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (environment == "Development"){       
+                return Environment.GetEnvironmentVariable(settingKey);
+            }
+            else if (environment == "Production") {
+               return await GetForgeKeysSSM(Environment.GetEnvironmentVariable(settingKey));
+            }
+            return string.Empty;
         }
     }
 }
