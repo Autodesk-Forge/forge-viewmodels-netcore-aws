@@ -1,6 +1,5 @@
 ﻿using Autodesk.Forge;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Threading.Tasks;
 using Amazon.SimpleSystemsManagement;
