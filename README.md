@@ -1,19 +1,18 @@
-# forge.tutorial.viewmodels.net - .NET Core
+# forge-viewmodels-netcore-aws
 
-![Platforms](https://img.shields.io/badge/platform-Windows-lightgray.svg)
-![.NET](https://img.shields.io/badge/.NET%20Core-2.2-blue.svg)
-[![ASP.NET](https://img.shields.io/badge/ASP.NET%20Core-2.2-blue.svg)](https://asp.net/)
-[![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
+![Platforms](https://img.shields.io/badge/platform-Windows|MacOS-lightgray.svg)
+![.NET](https://img.shields.io/badge/.NET%20Core-2.1-blue.svg)
+[![License](http://img.shields.io/:license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 [![oAuth2](https://img.shields.io/badge/oAuth2-v1-green.svg)](http://developer.autodesk.com/)
 [![Data-Management](https://img.shields.io/badge/Data%20Management-v1-green.svg)](http://developer.autodesk.com/)
-[![OSS](https://img.shields.io/badge/OSS-v2-green.svg)](http://developer.autodesk.com/)
-[![Model-Derivative](https://img.shields.io/badge/Model%20Derivative-v2-green.svg)](http://developer.autodesk.com/)
-[![Viewer](https://img.shields.io/badge/Viewer-v4.0-green.svg)](http://developer.autodesk.com/)
+[![Viewer](https://img.shields.io/badge/Viewer-v7-green.svg)](http://developer.autodesk.com/)
+
+![Intermediate](https://img.shields.io/badge/Level-Intermediate-blue.svg)
 
 # Description
 
-This sample is part of the [Learn Forge](http://learnforge.autodesk.io) tutorials.
+AWS Cloudformation Project
 
 # Setup
 
@@ -56,5 +55,4 @@ Documentation:
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
 ## Written by
-
-Augusto Goncalves [@augustomaia](https://twitter.com/augustomaia), [Forge Partner Development](http://forge.autodesk.com)
+[Forge Partner Development](http://forge.autodesk.com)
