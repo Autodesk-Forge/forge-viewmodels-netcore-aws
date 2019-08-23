@@ -12,7 +12,9 @@
 
 # Description
 
-AWS Cloudformation Project
+AWS Cloudformation Project for the use with [Autodesk Forge AWS Quickstart](https://aws.amazon.com/quickstart/architecture/autodesk-forge/)
+
+![Quick Start architecture for Autodesk Forge on AWS Cloud](Autodesk Forge Quick Start architecture diagram.png)
 
 # Setup
 
@@ -23,19 +25,18 @@ AWS Cloudformation Project
 3. **.NET Framework** basic knowledge with C#
 4. **JavaScript** basic knowledge with **jQuery**
 
-For using this sample, you need an Autodesk developer credentials. Visit the [Forge Developer Portal](https://developer.autodesk.com), sign up for an account, then [create an app](https://developer.autodesk.com/myapps/create) that uses Data Management and Model Derivative APIs. For this new app, use `http://localhost:3000/api/forge/callback/oauth` as Callback URL, although is not used on 2-legged flow. Finally take note of the **Client ID** and **Client Secret**.
+For using this sample, you need an Autodesk developer credentials. Visit the [Forge Developer Portal](https://forge.autodesk.com), sign up for an account, then [create an app](https://forge.autodesk.com/myapps/create) that uses Data Management and Model Derivative APIs. For this new app, use `http://localhost:3000/api/forge/callback/oauth` as Callback URL, although is not used on 2-legged flow. Finally take note of the **Client ID** and **Client Secret**.
 
 ## Running locally
 
 Clone this project or download it (this `netcore` branch only). It's recommended to install [GitHub desktop](https://desktop.github.com/). To clone it via command line, use the following (**Terminal** on MacOSX/Linux, **Git Shell** on Windows):
 
-    git clone -b netcore https://github.com/Autodesk-Forge/learn.forge.viewmodels.git
+    git clone -b netcore https://github.com/Autodesk-Forge/forge-viewmodels-netcore-aws.git
     
 For Visual Studio, go to project properties and specify the environment variables. For Visual Code, create a new Debug Configuration with the environment variables:
 
 - `FORGE_CLIENT_ID`: your Forge Client ID
 - `FORGE_CLIENT_SECRET`: your Forge Client Secret
-- `FORGE_CALLBACK_URL`: not used on this sample
 
 Compile the solution, Visual Studio should download the NUGET packages ([Autodesk Forge](https://www.nuget.org/packages/Autodesk.Forge/), [RestSharp](https://www.nuget.org/packages/RestSharp) and [Newtonsoft.Json](https://www.nuget.org/packages/newtonsoft.json/))
 
@@ -47,7 +48,7 @@ Documentation:
 
 - [BIM 360 API](https://developer.autodesk.com/en/docs/bim360/v1/overview/) and [App Provisioning](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps)
 - [Data Management API](https://developer.autodesk.com/en/docs/data/v2/overview/)
-- [Viewer](https://developer.autodesk.com/en/docs/viewer/v6) 
+- [Viewer](https://developer.autodesk.com/en/docs/viewer/v7) 
 
 
 ## License
